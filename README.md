@@ -590,7 +590,7 @@ This project is licensed under the Apache License 2.0.
 
 # Citation
 
-If you use this prototype in academic work, please cite the associated publication: "OT-Aegis: AI-Driven Security for Operational Technology and Industrial Systems".
+If you use this prototype in academic work, please cite the associated publication: "OT-Aegis: AI-Driven Security for Operational Technology and Industrial Systems", G. Hatzivasilis and D. Pezaros.
 
 ---
 
