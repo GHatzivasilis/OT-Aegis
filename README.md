@@ -587,19 +587,10 @@ This enables:
 
 This project is licensed under the Apache License 2.0.
 
-See:
-
-```text
-LICENSE
-```
-
-for details.
-
----
 
 # Citation
 
-If you use this prototype in academic work, please cite the associated publication (to be added).
+If you use this prototype in academic work, please cite the associated publication: "OT-Aegis: AI-Driven Security for Operational Technology and Industrial Systems".
 
 ---
 
