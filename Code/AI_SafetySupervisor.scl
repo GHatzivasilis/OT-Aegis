@@ -1,0 +1,349 @@
+FUNCTION_BLOCK FB_AI_SafetySupervisor
+{ S7_Optimized_Access := 'TRUE' }
+
+VAR_INPUT
+    // ------------------------------------------------------------------
+    // PLC-facing image produced by the Software Shield.
+    // The PLC does not trust these values; it independently validates them.
+    // ------------------------------------------------------------------
+    Shield_Enable              : Bool;
+    Shield_SeqId              : DInt;
+    Shield_Heartbeat          : DInt;
+    Shield_Valid              : Bool;
+    Shield_DecisionCode       : Int;    // 1=allow, 2=downgrade, 3=fallback_request, 4=block
+    Shield_RiskScore          : Int;    // 0..100
+    Shield_PumpSpeedCmd       : Real;   // %
+    Shield_ValveOpenCmd       : Bool;
+    Shield_FallbackRequired   : Bool;
+    Shield_SafeStopRequired   : Bool;
+    Shield_ReasonCode         : Int;
+    Shield_TimestampMs        : LInt;
+
+    // Process state
+    TankLevel                 : Real;   // %
+    Pressure                  : Real;   // bar
+    FlowRate                  : Real;   // m3/h
+
+    // Operating mode
+    EmergencyStop             : Bool;
+    MaintenanceMode           : Bool;
+    ManualOverride            : Bool;
+END_VAR
+
+VAR_OUTPUT
+    PumpSpeedOut              : Real;
+    ValveOpenOut              : Bool;
+
+    ApplyShieldCommand        : Bool;
+    UseFallbackControl        : Bool;
+    FailSafeActive            : Bool;
+    Alarm                     : Bool;
+
+    HeartbeatOK               : Bool;
+    SequenceOK                : Bool;
+    TimingOK                  : Bool;
+    ShieldDecisionOK          : Bool;
+    BoundsOK                  : Bool;
+    RateOK                    : Bool;
+    ProcessLogicOK            : Bool;
+    ModeOK                    : Bool;
+    RiskOK                    : Bool;
+    SafetyOK                  : Bool;
+
+    PLC_ActionCode            : Int;    // 1=apply shield, 2=fallback, 3=fail-safe
+    PLC_RejectReasonCode      : Int;    // deterministic PLC-side reason
+END_VAR
+
+VAR
+    LastHeartbeat             : DInt := -1;
+    LastSeqId                 : DInt := -1;
+    LastPumpSpeed             : Real := 0.0;
+
+    HeartbeatTimer            : TON;
+    CommandTimer              : TON;
+
+    HeartbeatChanged          : Bool;
+    SequenceAdvanced          : Bool;
+END_VAR
+
+VAR CONSTANT
+    // Shield decision codes
+    DECISION_ALLOW            : Int := 1;
+    DECISION_DOWNGRADE        : Int := 2;
+    DECISION_FALLBACK         : Int := 3;
+    DECISION_BLOCK            : Int := 4;
+
+    // PLC action codes
+    ACTION_APPLY_SHIELD       : Int := 1;
+    ACTION_FALLBACK           : Int := 2;
+    ACTION_FAILSAFE           : Int := 3;
+
+    // PLC-side reject reason codes
+    PLC_REASON_NONE           : Int := 0;
+    PLC_REASON_ESTOP          : Int := 100;
+    PLC_REASON_MODE           : Int := 101;
+    PLC_REASON_HEARTBEAT      : Int := 102;
+    PLC_REASON_SEQUENCE       : Int := 103;
+    PLC_REASON_TIMING         : Int := 104;
+    PLC_REASON_SHIELD_BLOCK   : Int := 105;
+    PLC_REASON_BOUNDS         : Int := 106;
+    PLC_REASON_RATE           : Int := 107;
+    PLC_REASON_PROCESS_LOGIC  : Int := 108;
+    PLC_REASON_HIGH_RISK      : Int := 109;
+
+    // Hard PLC/safety limits. These must be at least as strict as required by the plant.
+    MAX_PUMP_SPEED            : Real := 80.0;
+    MIN_PUMP_SPEED            : Real := 0.0;
+
+    MAX_PRESSURE              : Real := 8.0;
+    MAX_TANK_LEVEL            : Real := 95.0;
+    MIN_TANK_LEVEL            : Real := 5.0;
+
+    MAX_SPEED_DELTA           : Real := 10.0;
+    MAX_ACCEPTED_RISK         : Int  := 70;
+
+    FALLBACK_SPEED            : Real := 30.0;
+END_VAR
+
+BEGIN
+
+    // ------------------------------------------------------------
+    // 1. Heartbeat monitoring
+    // ------------------------------------------------------------
+
+    HeartbeatChanged := Shield_Heartbeat <> LastHeartbeat;
+
+    IF HeartbeatChanged THEN
+        HeartbeatTimer(IN := FALSE,
+                       PT := T#500ms);
+    ELSE
+        HeartbeatTimer(IN := TRUE,
+                       PT := T#500ms);
+    END_IF;
+
+    LastHeartbeat := Shield_Heartbeat;
+    HeartbeatOK := NOT HeartbeatTimer.Q;
+
+
+    // ------------------------------------------------------------
+    // 2. Sequence monotonicity and command timing
+    // ------------------------------------------------------------
+
+    SequenceAdvanced := Shield_SeqId > LastSeqId;
+
+    IF SequenceAdvanced THEN
+        CommandTimer(IN := FALSE,
+                     PT := T#300ms);
+        LastSeqId := Shield_SeqId;
+    ELSE
+        CommandTimer(IN := TRUE,
+                     PT := T#300ms);
+    END_IF;
+
+    SequenceOK := SequenceAdvanced OR (LastSeqId = Shield_SeqId);
+    TimingOK := NOT CommandTimer.Q;
+
+
+    // ------------------------------------------------------------
+    // 3. Validate shield decision semantics
+    // ------------------------------------------------------------
+
+    ShieldDecisionOK :=
+        Shield_Valid AND
+        ((Shield_DecisionCode = DECISION_ALLOW) OR
+         (Shield_DecisionCode = DECISION_DOWNGRADE));
+
+    IF Shield_FallbackRequired THEN
+        ShieldDecisionOK := FALSE;
+    END_IF;
+
+    IF Shield_SafeStopRequired THEN
+        ShieldDecisionOK := FALSE;
+    END_IF;
+
+    IF Shield_DecisionCode = DECISION_BLOCK THEN
+        ShieldDecisionOK := FALSE;
+    END_IF;
+
+
+    // ------------------------------------------------------------
+    // 4. PLC hard bounds checking
+    // ------------------------------------------------------------
+
+    BoundsOK :=
+        (Shield_PumpSpeedCmd >= MIN_PUMP_SPEED) AND
+        (Shield_PumpSpeedCmd <= MAX_PUMP_SPEED) AND
+        (Pressure <= MAX_PRESSURE) AND
+        (TankLevel <= MAX_TANK_LEVEL) AND
+        (TankLevel >= MIN_TANK_LEVEL);
+
+
+    // ------------------------------------------------------------
+    // 5. PLC rate-of-change checking
+    // ------------------------------------------------------------
+
+    RateOK := ABS(Shield_PumpSpeedCmd - LastPumpSpeed) <= MAX_SPEED_DELTA;
+
+
+    // ------------------------------------------------------------
+    // 6. PLC process logic validation
+    // ------------------------------------------------------------
+
+    ProcessLogicOK := TRUE;
+
+    // Pump must not run against a closed valve.
+    IF (Shield_PumpSpeedCmd > 0.0) AND (NOT Shield_ValveOpenCmd) THEN
+        ProcessLogicOK := FALSE;
+    END_IF;
+
+    // High pressure with no flow is suspicious or unsafe.
+    IF (Pressure > (0.9 * MAX_PRESSURE)) AND (FlowRate <= 0.1) THEN
+        ProcessLogicOK := FALSE;
+    END_IF;
+
+    // Tank nearly full, but upstream logic still requests pumping.
+    IF (TankLevel > 90.0) AND (Shield_PumpSpeedCmd > 20.0) THEN
+        ProcessLogicOK := FALSE;
+    END_IF;
+
+
+    // ------------------------------------------------------------
+    // 7. Mode and risk validation
+    // ------------------------------------------------------------
+
+    ModeOK :=
+        Shield_Enable AND
+        NOT EmergencyStop AND
+        NOT MaintenanceMode AND
+        NOT ManualOverride;
+
+    RiskOK := Shield_RiskScore <= MAX_ACCEPTED_RISK;
+
+
+    // ------------------------------------------------------------
+    // 8. Final PLC/Safety PLC decision
+    // ------------------------------------------------------------
+
+    SafetyOK :=
+        HeartbeatOK AND
+        SequenceOK AND
+        TimingOK AND
+        ShieldDecisionOK AND
+        BoundsOK AND
+        RateOK AND
+        ProcessLogicOK AND
+        ModeOK AND
+        RiskOK;
+
+
+    // ------------------------------------------------------------
+    // 9. Output selection
+    // ------------------------------------------------------------
+
+    PLC_RejectReasonCode := PLC_REASON_NONE;
+
+    IF EmergencyStop THEN
+
+        PumpSpeedOut := 0.0;
+        ValveOpenOut := FALSE;
+
+        ApplyShieldCommand := FALSE;
+        UseFallbackControl := FALSE;
+        FailSafeActive := TRUE;
+        Alarm := TRUE;
+
+        PLC_ActionCode := ACTION_FAILSAFE;
+        PLC_RejectReasonCode := PLC_REASON_ESTOP;
+
+    ELSIF MaintenanceMode OR ManualOverride OR NOT Shield_Enable THEN
+
+        PumpSpeedOut := 0.0;
+        ValveOpenOut := FALSE;
+
+        ApplyShieldCommand := FALSE;
+        UseFallbackControl := FALSE;
+        FailSafeActive := TRUE;
+        Alarm := TRUE;
+
+        PLC_ActionCode := ACTION_FAILSAFE;
+        PLC_RejectReasonCode := PLC_REASON_MODE;
+
+    ELSIF Shield_SafeStopRequired OR (Shield_DecisionCode = DECISION_BLOCK) THEN
+
+        PumpSpeedOut := 0.0;
+        ValveOpenOut := FALSE;
+
+        ApplyShieldCommand := FALSE;
+        UseFallbackControl := FALSE;
+        FailSafeActive := TRUE;
+        Alarm := TRUE;
+
+        PLC_ActionCode := ACTION_FAILSAFE;
+        PLC_RejectReasonCode := PLC_REASON_SHIELD_BLOCK;
+
+    ELSIF SafetyOK THEN
+
+        PumpSpeedOut := Shield_PumpSpeedCmd;
+        ValveOpenOut := Shield_ValveOpenCmd;
+
+        ApplyShieldCommand := TRUE;
+        UseFallbackControl := FALSE;
+        FailSafeActive := FALSE;
+        Alarm := FALSE;
+
+        PLC_ActionCode := ACTION_APPLY_SHIELD;
+        PLC_RejectReasonCode := PLC_REASON_NONE;
+
+    ELSE
+
+        // Deterministic fallback for non-critical violations.
+        // Critical physical envelope violations are promoted to fail-safe below.
+        PumpSpeedOut := FALLBACK_SPEED;
+        ValveOpenOut := TRUE;
+
+        ApplyShieldCommand := FALSE;
+        UseFallbackControl := TRUE;
+        FailSafeActive := FALSE;
+        Alarm := TRUE;
+
+        PLC_ActionCode := ACTION_FALLBACK;
+
+        IF NOT HeartbeatOK THEN
+            PLC_RejectReasonCode := PLC_REASON_HEARTBEAT;
+        ELSIF NOT SequenceOK THEN
+            PLC_RejectReasonCode := PLC_REASON_SEQUENCE;
+        ELSIF NOT TimingOK THEN
+            PLC_RejectReasonCode := PLC_REASON_TIMING;
+        ELSIF NOT BoundsOK THEN
+            PLC_RejectReasonCode := PLC_REASON_BOUNDS;
+        ELSIF NOT RateOK THEN
+            PLC_RejectReasonCode := PLC_REASON_RATE;
+        ELSIF NOT ProcessLogicOK THEN
+            PLC_RejectReasonCode := PLC_REASON_PROCESS_LOGIC;
+        ELSIF NOT RiskOK THEN
+            PLC_RejectReasonCode := PLC_REASON_HIGH_RISK;
+        ELSE
+            PLC_RejectReasonCode := PLC_REASON_SHIELD_BLOCK;
+        END_IF;
+
+        // Promote physical safety envelope violations to fail-safe.
+        IF (Pressure > MAX_PRESSURE) OR
+           (TankLevel > MAX_TANK_LEVEL) OR
+           (TankLevel < MIN_TANK_LEVEL) OR
+           ((Shield_PumpSpeedCmd > 0.0) AND (NOT Shield_ValveOpenCmd)) THEN
+
+            PumpSpeedOut := 0.0;
+            ValveOpenOut := FALSE;
+
+            UseFallbackControl := FALSE;
+            FailSafeActive := TRUE;
+            PLC_ActionCode := ACTION_FAILSAFE;
+        END_IF;
+
+    END_IF;
+
+
+    // Store applied command for rate supervision.
+    LastPumpSpeed := PumpSpeedOut;
+
+END_FUNCTION_BLOCK
