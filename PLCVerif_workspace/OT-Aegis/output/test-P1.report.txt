@@ -1,0 +1,107 @@
+P1_EmergencyStopFailSafe
+========================
+
+Requirement: If *instance.EmergencyStop* is true at the end of the PLC cycle, then *instance.FailSafeActive* should always be true at the end of the same cycle.
+             (AG ((EoC && instance/EmergencyStop) --> instance/FailSafeActive))
+
+**Result: the requirement is SATISFIED**
+
+Backend: NusmvBackend
+Parameters: 
+Input bindings: 
+
+
+
+Stages
+------
+* Parsing source code (0 ms): Successful
+* Control-flow declaration generation (23 ms): Successful
+* Requirement representation (13 ms): Successful
+* Reductions (CFD) (6 ms): Successful
+* Model preparation (8 ms): Successful
+* Reductions (CFI) (30 ms): Successful
+* NuSMV model building (1 ms): Successful
+* NuSMV execution (122 ms): Successful
+* NuSMV output parsing (0 ms): Successful
+* Result diagnosis (0 ms): Successful
+* Reporting (0 ms): Unknown
+
+Settings
+--------
+  -description = ""
+  -id = test-P1
+  -job = verif
+  -job.backend = nusmv
+  -job.backend.algorithm = Classic
+  -job.backend.binary_path = .\tools\nuxmv\nuxmv.exe
+  -job.backend.df = false
+  -job.backend.dynamic = false
+  -job.backend.locref_req_strategy = false
+  -job.backend.req_as_invar = false
+  -job.backend.timeout = 5
+  -job.reporters.0 = html
+  -job.reporters.0.hide_internal_variables = true
+  -job.reporters.0.include_settings = true
+  -job.reporters.0.include_stack_trace = false
+  -job.reporters.0.min_log_level = Warning
+  -job.reporters.0.show_logitem_timestapms = false
+  -job.reporters.0.show_verification_console_output = true
+  -job.reporters.0.use_lf_value_representation = false
+  -job.reporters.1 = plaintext
+  -job.reporters.1.include_settings = true
+  -job.reporters.1.max_output_length = 5000
+  -job.reporters.1.min_log_level = Warning
+  -job.reporters.1.show_logitem_timestapms = false
+  -job.reporters.1.write_to_console = true
+  -job.reporters.1.write_to_file = true
+  -job.reporters.2 = summary
+  -job.req = pattern
+  -job.req.pattern_id = pattern-implication
+  -job.req.pattern_params.1 = instance.EmergencyStop
+  -job.req.pattern_params.2 = instance.FailSafeActive
+  -lf = step7
+  -lf.compiler = Step7v55
+  -lf.entry = FB_AI_SafetySupervisor
+  -name = P1_EmergencyStopFailSafe
+  -output = C:\Users\hatzi\AppData\Local\Temp\PLCverif-output14284854300715212761
+  -reductions.0 = basic_reductions
+  -reductions.0.ExpressionPropagation_maxage = 50
+  -reductions.0.ExpressionPropagation_maxexprsize = 100
+  -reductions.0.ExpressionPropagation_maxlocations = 50000
+  -reductions.0.fine_logging = false
+  -reductions.0.print_vardep_graph = false
+  -reductions.0.show_progress = false
+  -sourcefiles.0 = C:\Users\hatzi\Desktop\picverif\workspace\OT-Aegis\OT-Aegis.scl
+
+Console output
+--------------
+STDOUT
+
+*** This is nuXmv 2.1.0 (compiled on Thu Nov 28 16:15:03 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+Output to file: C:\Users\hatzi\AppData\Local\Temp\PLCverif-output14284854300715212761\test-P1.smv.cex
+

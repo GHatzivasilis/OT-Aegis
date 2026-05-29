@@ -1,0 +1,23 @@
+-description = "Formal verification of the deterministic OT-Aegis PLC supervisory logic against a composite set of safety and trust invariants. The verification ensures that emergency-stop conditions dominate operational control, fail-safe containment is correctly enforced, actuator hard bounds are respected, cyber-physical interlocks are preserved, invalid software shield outputs cannot directly influence control execution, and fallback or safe-stop directives are correctly handled. Verification was performed using PLCverif with the nuXmv backend over the verification-oriented SCL representation of the PLC supervisor."
+-id = VC-OTAEGIS-01
+-job = verif
+-job.backend = nusmv
+-job.req = assertion
+-job.req.assertion_to_check.0 = assert1
+-job.req.assertion_to_check.1 = assert10
+-job.req.assertion_to_check.2 = assert11
+-job.req.assertion_to_check.3 = assert12
+-job.req.assertion_to_check.4 = assert13
+-job.req.assertion_to_check.5 = assert14
+-job.req.assertion_to_check.6 = assert2
+-job.req.assertion_to_check.7 = assert3
+-job.req.assertion_to_check.8 = assert4
+-job.req.assertion_to_check.9 = assert5
+-job.req.assertion_to_check.10 = assert6
+-job.req.assertion_to_check.11 = assert7
+-job.req.assertion_to_check.12 = assert8
+-lf = step7
+-lf.entry = FB_AI_SafetySupervisor
+-name = "OT-Aegis Deterministic PLC Safety Invariant Verification"
+-sourcefiles.0 = *.scl
+

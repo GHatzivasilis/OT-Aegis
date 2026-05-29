@@ -1,0 +1,1053 @@
+{ProgramFile}
+ ├──verificationOptions: <empty>
+ ├──globalVariables: <empty>
+ └──programUnits: 
+    {FunctionBlock name=FB_AI_SafetySupervisor builtIn=false}
+     ├──attributes: <null>
+     ├──declarationSection: 
+     │  {DeclarationSection}
+     │   ├──variableDeclarations: 
+     │   │  {VariableDeclarationBlock direction=VAR_INPUT retain=false}
+     │   │   └──variables: 
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldEnable reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldValid reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldSeqId reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=DINT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldHeartbeat reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=DINT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldDecisionCode reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=INT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldRiskScore reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=INT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldPumpCmd_x10 reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=INT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldValveOpenCmd reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldFallbackReq reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldSafeStopReq reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=TankLevel_x10 reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=INT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=Pressure_x100 reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=INT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=FlowRate_x10 reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=INT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=EmergencyStop reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=MaintenanceMode reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ManualOverride reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │  {VariableDeclarationBlock direction=VAR_OUTPUT retain=false}
+     │   │   └──variables: 
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=PumpSpeedOut_x10 reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=INT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ValveOpenOut reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=UseShieldControl reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=UseFallbackControl reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=FailSafeActive reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=Alarm reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=HeartbeatOK reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=SequenceOK reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=BoundsOK reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=RiskOK reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ProcessLogicOK reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ModeOK reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=ShieldDecisionOK reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=SafetyOK reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │  {VariableDeclarationBlock direction=VAR retain=false}
+     │   │   └──variables: 
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=LastSeqId reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=DINT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=LastHeartbeat reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=DINT}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   │      {VariableDeclarationLine initialized=false bounded=false}
+     │   │       ├──variables: 
+     │   │       │  {Variable name=HeartbeatChanged reference=false ref:<null>}
+     │   │       ├──type: 
+     │   │       │  {ElementaryDT type=BOOL}
+     │   │       ├──initialization: <null>
+     │   │       ├──lowerBound: <null>
+     │   │       └──upperBound: <null>
+     │   ├──constantDeclarations: 
+     │   │  {ConstDeclarationBlock}
+     │   │   └──constants: 
+     │   │      {NamedConstantDeclaration name=DECISION_ALLOW}
+     │   │       └──value: 
+     │   │          {IntConstant value=1}
+     │   │      {NamedConstantDeclaration name=DECISION_DOWNGRADE}
+     │   │       └──value: 
+     │   │          {IntConstant value=2}
+     │   │      {NamedConstantDeclaration name=DECISION_FALLBACK}
+     │   │       └──value: 
+     │   │          {IntConstant value=3}
+     │   │      {NamedConstantDeclaration name=DECISION_BLOCK}
+     │   │       └──value: 
+     │   │          {IntConstant value=4}
+     │   │      {NamedConstantDeclaration name=MIN_PUMP_X10}
+     │   │       └──value: 
+     │   │          {IntConstant value=0}
+     │   │      {NamedConstantDeclaration name=MAX_PUMP_X10}
+     │   │       └──value: 
+     │   │          {IntConstant value=800}
+     │   │      {NamedConstantDeclaration name=FALLBACK_PUMP_X10}
+     │   │       └──value: 
+     │   │          {IntConstant value=300}
+     │   │      {NamedConstantDeclaration name=MIN_TANK_X10}
+     │   │       └──value: 
+     │   │          {IntConstant value=50}
+     │   │      {NamedConstantDeclaration name=MAX_TANK_X10}
+     │   │       └──value: 
+     │   │          {IntConstant value=950}
+     │   │      {NamedConstantDeclaration name=MAX_PRESSURE_X100}
+     │   │       └──value: 
+     │   │          {IntConstant value=800}
+     │   │      {NamedConstantDeclaration name=MIN_FLOW_X10}
+     │   │       └──value: 
+     │   │          {IntConstant value=1}
+     │   │      {NamedConstantDeclaration name=MAX_RISK}
+     │   │       └──value: 
+     │   │          {IntConstant value=70}
+     │   └──labelDeclarations: <empty>
+     └──statements: 
+        {SclStatementList}
+         └──statements: 
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+             └──rightValue: 
+                {IntConstant value=0}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=ValveOpenOut}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=UseFallbackControl}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+             └──rightValue: 
+                {BoolConstant value=TRUE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=Alarm}}
+             └──rightValue: 
+                {BoolConstant value=TRUE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=HeartbeatOK}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=SequenceOK}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=BoundsOK}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=RiskOK}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=ProcessLogicOK}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=ModeOK}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=ShieldDecisionOK}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=SafetyOK}}
+             └──rightValue: 
+                {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=HeartbeatChanged}}
+             └──rightValue: 
+                {EqualityExpression operator=<>}
+                 ├──left: 
+                 │  {DirectNamedRef ref:{NamedElement name=ShieldHeartbeat}}
+                 └──right: 
+                    {DirectNamedRef ref:{NamedElement name=LastHeartbeat}}
+            {SclIfStatement else=true}
+             ├──condition: 
+             │  {DirectNamedRef ref:{NamedElement name=HeartbeatChanged}}
+             ├──thenBranch: 
+             │  {SclStatementList}
+             │   └──statements: 
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=HeartbeatOK}}
+             │       └──rightValue: 
+             │          {BoolConstant value=TRUE}
+             ├──elsifBranches: <empty>
+             └──elseBranch: 
+                {SclStatementList}
+                 └──statements: 
+                    {SclAssignmentStatement}
+                     ├──leftValue: 
+                     │  {DirectNamedRef ref:{NamedElement name=HeartbeatOK}}
+                     └──rightValue: 
+                        {BoolConstant value=FALSE}
+            {SclIfStatement else=true}
+             ├──condition: 
+             │  {ComparisonExpression operator=>}
+             │   ├──left: 
+             │   │  {DirectNamedRef ref:{NamedElement name=ShieldSeqId}}
+             │   └──right: 
+             │      {DirectNamedRef ref:{NamedElement name=LastSeqId}}
+             ├──thenBranch: 
+             │  {SclStatementList}
+             │   └──statements: 
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=SequenceOK}}
+             │       └──rightValue: 
+             │          {BoolConstant value=TRUE}
+             ├──elsifBranches: <empty>
+             └──elseBranch: 
+                {SclStatementList}
+                 └──statements: 
+                    {SclAssignmentStatement}
+                     ├──leftValue: 
+                     │  {DirectNamedRef ref:{NamedElement name=SequenceOK}}
+                     └──rightValue: 
+                        {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=ModeOK}}
+             └──rightValue: 
+                {AndExpression opString=AND}
+                 ├──left: 
+                 │  {AndExpression opString=AND}
+                 │   ├──left: 
+                 │   │  {AndExpression opString=AND}
+                 │   │   ├──left: 
+                 │   │   │  {DirectNamedRef ref:{NamedElement name=ShieldEnable}}
+                 │   │   └──right: 
+                 │   │      {UnaryExpression op=NOT}
+                 │   │       └──expr: 
+                 │   │          {DirectNamedRef ref:{NamedElement name=EmergencyStop}}
+                 │   └──right: 
+                 │      {UnaryExpression op=NOT}
+                 │       └──expr: 
+                 │          {DirectNamedRef ref:{NamedElement name=MaintenanceMode}}
+                 └──right: 
+                    {UnaryExpression op=NOT}
+                     └──expr: 
+                        {DirectNamedRef ref:{NamedElement name=ManualOverride}}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=ShieldDecisionOK}}
+             └──rightValue: 
+                {AndExpression opString=AND}
+                 ├──left: 
+                 │  {DirectNamedRef ref:{NamedElement name=ShieldValid}}
+                 └──right: 
+                    {OrExpression}
+                     ├──left: 
+                     │  {EqualityExpression operator==}
+                     │   ├──left: 
+                     │   │  {DirectNamedRef ref:{NamedElement name=ShieldDecisionCode}}
+                     │   └──right: 
+                     │      {DirectNamedRef ref:{NamedElement name=DECISION_ALLOW}}
+                     └──right: 
+                        {EqualityExpression operator==}
+                         ├──left: 
+                         │  {DirectNamedRef ref:{NamedElement name=ShieldDecisionCode}}
+                         └──right: 
+                            {DirectNamedRef ref:{NamedElement name=DECISION_DOWNGRADE}}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=BoundsOK}}
+             └──rightValue: 
+                {AndExpression opString=AND}
+                 ├──left: 
+                 │  {AndExpression opString=AND}
+                 │   ├──left: 
+                 │   │  {AndExpression opString=AND}
+                 │   │   ├──left: 
+                 │   │   │  {AndExpression opString=AND}
+                 │   │   │   ├──left: 
+                 │   │   │   │  {ComparisonExpression operator=>=}
+                 │   │   │   │   ├──left: 
+                 │   │   │   │   │  {DirectNamedRef ref:{NamedElement name=ShieldPumpCmd_x10}}
+                 │   │   │   │   └──right: 
+                 │   │   │   │      {DirectNamedRef ref:{NamedElement name=MIN_PUMP_X10}}
+                 │   │   │   └──right: 
+                 │   │   │      {ComparisonExpression operator=<=}
+                 │   │   │       ├──left: 
+                 │   │   │       │  {DirectNamedRef ref:{NamedElement name=ShieldPumpCmd_x10}}
+                 │   │   │       └──right: 
+                 │   │   │          {DirectNamedRef ref:{NamedElement name=MAX_PUMP_X10}}
+                 │   │   └──right: 
+                 │   │      {ComparisonExpression operator=>=}
+                 │   │       ├──left: 
+                 │   │       │  {DirectNamedRef ref:{NamedElement name=TankLevel_x10}}
+                 │   │       └──right: 
+                 │   │          {DirectNamedRef ref:{NamedElement name=MIN_TANK_X10}}
+                 │   └──right: 
+                 │      {ComparisonExpression operator=<=}
+                 │       ├──left: 
+                 │       │  {DirectNamedRef ref:{NamedElement name=TankLevel_x10}}
+                 │       └──right: 
+                 │          {DirectNamedRef ref:{NamedElement name=MAX_TANK_X10}}
+                 └──right: 
+                    {ComparisonExpression operator=<=}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=Pressure_x100}}
+                     └──right: 
+                        {DirectNamedRef ref:{NamedElement name=MAX_PRESSURE_X100}}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=RiskOK}}
+             └──rightValue: 
+                {ComparisonExpression operator=<=}
+                 ├──left: 
+                 │  {DirectNamedRef ref:{NamedElement name=ShieldRiskScore}}
+                 └──right: 
+                    {DirectNamedRef ref:{NamedElement name=MAX_RISK}}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=ProcessLogicOK}}
+             └──rightValue: 
+                {BoolConstant value=TRUE}
+            {SclIfStatement else=false}
+             ├──condition: 
+             │  {AndExpression opString=AND}
+             │   ├──left: 
+             │   │  {ComparisonExpression operator=>}
+             │   │   ├──left: 
+             │   │   │  {DirectNamedRef ref:{NamedElement name=ShieldPumpCmd_x10}}
+             │   │   └──right: 
+             │   │      {IntConstant value=0}
+             │   └──right: 
+             │      {UnaryExpression op=NOT}
+             │       └──expr: 
+             │          {DirectNamedRef ref:{NamedElement name=ShieldValveOpenCmd}}
+             ├──thenBranch: 
+             │  {SclStatementList}
+             │   └──statements: 
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=ProcessLogicOK}}
+             │       └──rightValue: 
+             │          {BoolConstant value=FALSE}
+             ├──elsifBranches: <empty>
+             └──elseBranch: <null>
+            {SclIfStatement else=false}
+             ├──condition: 
+             │  {AndExpression opString=AND}
+             │   ├──left: 
+             │   │  {ComparisonExpression operator=>}
+             │   │   ├──left: 
+             │   │   │  {DirectNamedRef ref:{NamedElement name=Pressure_x100}}
+             │   │   └──right: 
+             │   │      {IntConstant value=720}
+             │   └──right: 
+             │      {ComparisonExpression operator=<}
+             │       ├──left: 
+             │       │  {DirectNamedRef ref:{NamedElement name=FlowRate_x10}}
+             │       └──right: 
+             │          {DirectNamedRef ref:{NamedElement name=MIN_FLOW_X10}}
+             ├──thenBranch: 
+             │  {SclStatementList}
+             │   └──statements: 
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=ProcessLogicOK}}
+             │       └──rightValue: 
+             │          {BoolConstant value=FALSE}
+             ├──elsifBranches: <empty>
+             └──elseBranch: <null>
+            {SclIfStatement else=false}
+             ├──condition: 
+             │  {AndExpression opString=AND}
+             │   ├──left: 
+             │   │  {ComparisonExpression operator=>}
+             │   │   ├──left: 
+             │   │   │  {DirectNamedRef ref:{NamedElement name=TankLevel_x10}}
+             │   │   └──right: 
+             │   │      {IntConstant value=900}
+             │   └──right: 
+             │      {ComparisonExpression operator=>}
+             │       ├──left: 
+             │       │  {DirectNamedRef ref:{NamedElement name=ShieldPumpCmd_x10}}
+             │       └──right: 
+             │          {IntConstant value=200}
+             ├──thenBranch: 
+             │  {SclStatementList}
+             │   └──statements: 
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=ProcessLogicOK}}
+             │       └──rightValue: 
+             │          {BoolConstant value=FALSE}
+             ├──elsifBranches: <empty>
+             └──elseBranch: <null>
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=SafetyOK}}
+             └──rightValue: 
+                {AndExpression opString=AND}
+                 ├──left: 
+                 │  {AndExpression opString=AND}
+                 │   ├──left: 
+                 │   │  {AndExpression opString=AND}
+                 │   │   ├──left: 
+                 │   │   │  {AndExpression opString=AND}
+                 │   │   │   ├──left: 
+                 │   │   │   │  {AndExpression opString=AND}
+                 │   │   │   │   ├──left: 
+                 │   │   │   │   │  {AndExpression opString=AND}
+                 │   │   │   │   │   ├──left: 
+                 │   │   │   │   │   │  {AndExpression opString=AND}
+                 │   │   │   │   │   │   ├──left: 
+                 │   │   │   │   │   │   │  {AndExpression opString=AND}
+                 │   │   │   │   │   │   │   ├──left: 
+                 │   │   │   │   │   │   │   │  {DirectNamedRef ref:{NamedElement name=HeartbeatOK}}
+                 │   │   │   │   │   │   │   └──right: 
+                 │   │   │   │   │   │   │      {DirectNamedRef ref:{NamedElement name=SequenceOK}}
+                 │   │   │   │   │   │   └──right: 
+                 │   │   │   │   │   │      {DirectNamedRef ref:{NamedElement name=ModeOK}}
+                 │   │   │   │   │   └──right: 
+                 │   │   │   │   │      {DirectNamedRef ref:{NamedElement name=ShieldDecisionOK}}
+                 │   │   │   │   └──right: 
+                 │   │   │   │      {DirectNamedRef ref:{NamedElement name=BoundsOK}}
+                 │   │   │   └──right: 
+                 │   │   │      {DirectNamedRef ref:{NamedElement name=RiskOK}}
+                 │   │   └──right: 
+                 │   │      {DirectNamedRef ref:{NamedElement name=ProcessLogicOK}}
+                 │   └──right: 
+                 │      {UnaryExpression op=NOT}
+                 │       └──expr: 
+                 │          {DirectNamedRef ref:{NamedElement name=ShieldFallbackReq}}
+                 └──right: 
+                    {UnaryExpression op=NOT}
+                     └──expr: 
+                        {DirectNamedRef ref:{NamedElement name=ShieldSafeStopReq}}
+            {SclIfStatement else=true}
+             ├──condition: 
+             │  {DirectNamedRef ref:{NamedElement name=EmergencyStop}}
+             ├──thenBranch: 
+             │  {SclStatementList}
+             │   └──statements: 
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+             │       └──rightValue: 
+             │          {IntConstant value=0}
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=ValveOpenOut}}
+             │       └──rightValue: 
+             │          {BoolConstant value=FALSE}
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+             │       └──rightValue: 
+             │          {BoolConstant value=FALSE}
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=UseFallbackControl}}
+             │       └──rightValue: 
+             │          {BoolConstant value=FALSE}
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+             │       └──rightValue: 
+             │          {BoolConstant value=TRUE}
+             │      {SclAssignmentStatement}
+             │       ├──leftValue: 
+             │       │  {DirectNamedRef ref:{NamedElement name=Alarm}}
+             │       └──rightValue: 
+             │          {BoolConstant value=TRUE}
+             ├──elsifBranches: 
+             │  {ElsifBlock}
+             │   ├──condition: 
+             │   │  {OrExpression}
+             │   │   ├──left: 
+             │   │   │  {DirectNamedRef ref:{NamedElement name=ShieldSafeStopReq}}
+             │   │   └──right: 
+             │   │      {EqualityExpression operator==}
+             │   │       ├──left: 
+             │   │       │  {DirectNamedRef ref:{NamedElement name=ShieldDecisionCode}}
+             │   │       └──right: 
+             │   │          {DirectNamedRef ref:{NamedElement name=DECISION_BLOCK}}
+             │   └──elsifBranch: 
+             │      {SclStatementList}
+             │       └──statements: 
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+             │           └──rightValue: 
+             │              {IntConstant value=0}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=ValveOpenOut}}
+             │           └──rightValue: 
+             │              {BoolConstant value=FALSE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+             │           └──rightValue: 
+             │              {BoolConstant value=FALSE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=UseFallbackControl}}
+             │           └──rightValue: 
+             │              {BoolConstant value=FALSE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+             │           └──rightValue: 
+             │              {BoolConstant value=TRUE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=Alarm}}
+             │           └──rightValue: 
+             │              {BoolConstant value=TRUE}
+             │  {ElsifBlock}
+             │   ├──condition: 
+             │   │  {DirectNamedRef ref:{NamedElement name=SafetyOK}}
+             │   └──elsifBranch: 
+             │      {SclStatementList}
+             │       └──statements: 
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+             │           └──rightValue: 
+             │              {DirectNamedRef ref:{NamedElement name=ShieldPumpCmd_x10}}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=ValveOpenOut}}
+             │           └──rightValue: 
+             │              {DirectNamedRef ref:{NamedElement name=ShieldValveOpenCmd}}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+             │           └──rightValue: 
+             │              {BoolConstant value=TRUE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=UseFallbackControl}}
+             │           └──rightValue: 
+             │              {BoolConstant value=FALSE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+             │           └──rightValue: 
+             │              {BoolConstant value=FALSE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=Alarm}}
+             │           └──rightValue: 
+             │              {BoolConstant value=FALSE}
+             │  {ElsifBlock}
+             │   ├──condition: 
+             │   │  {AndExpression opString=AND}
+             │   │   ├──left: 
+             │   │   │  {DirectNamedRef ref:{NamedElement name=ModeOK}}
+             │   │   └──right: 
+             │   │      {OrExpression}
+             │   │       ├──left: 
+             │   │       │  {DirectNamedRef ref:{NamedElement name=ShieldFallbackReq}}
+             │   │       └──right: 
+             │   │          {EqualityExpression operator==}
+             │   │           ├──left: 
+             │   │           │  {DirectNamedRef ref:{NamedElement name=ShieldDecisionCode}}
+             │   │           └──right: 
+             │   │              {DirectNamedRef ref:{NamedElement name=DECISION_FALLBACK}}
+             │   └──elsifBranch: 
+             │      {SclStatementList}
+             │       └──statements: 
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+             │           └──rightValue: 
+             │              {DirectNamedRef ref:{NamedElement name=FALLBACK_PUMP_X10}}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=ValveOpenOut}}
+             │           └──rightValue: 
+             │              {BoolConstant value=TRUE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+             │           └──rightValue: 
+             │              {BoolConstant value=FALSE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=UseFallbackControl}}
+             │           └──rightValue: 
+             │              {BoolConstant value=TRUE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+             │           └──rightValue: 
+             │              {BoolConstant value=FALSE}
+             │          {SclAssignmentStatement}
+             │           ├──leftValue: 
+             │           │  {DirectNamedRef ref:{NamedElement name=Alarm}}
+             │           └──rightValue: 
+             │              {BoolConstant value=TRUE}
+             └──elseBranch: 
+                {SclStatementList}
+                 └──statements: 
+                    {SclAssignmentStatement}
+                     ├──leftValue: 
+                     │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+                     └──rightValue: 
+                        {IntConstant value=0}
+                    {SclAssignmentStatement}
+                     ├──leftValue: 
+                     │  {DirectNamedRef ref:{NamedElement name=ValveOpenOut}}
+                     └──rightValue: 
+                        {BoolConstant value=FALSE}
+                    {SclAssignmentStatement}
+                     ├──leftValue: 
+                     │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+                     └──rightValue: 
+                        {BoolConstant value=FALSE}
+                    {SclAssignmentStatement}
+                     ├──leftValue: 
+                     │  {DirectNamedRef ref:{NamedElement name=UseFallbackControl}}
+                     └──rightValue: 
+                        {BoolConstant value=FALSE}
+                    {SclAssignmentStatement}
+                     ├──leftValue: 
+                     │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+                     └──rightValue: 
+                        {BoolConstant value=TRUE}
+                    {SclAssignmentStatement}
+                     ├──leftValue: 
+                     │  {DirectNamedRef ref:{NamedElement name=Alarm}}
+                     └──rightValue: 
+                        {BoolConstant value=TRUE}
+            {SclVerificationAssertion tagged=true tag=assert1}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=EmergencyStop}}
+                 │   └──right: 
+                 │      {BoolConstant value=FALSE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+                     └──right: 
+                        {BoolConstant value=TRUE}
+            {SclVerificationAssertion tagged=true tag=assert2}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=EmergencyStop}}
+                 │   └──right: 
+                 │      {BoolConstant value=FALSE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+                     └──right: 
+                        {IntConstant value=0}
+            {SclVerificationAssertion tagged=true tag=assert3}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=EmergencyStop}}
+                 │   └──right: 
+                 │      {BoolConstant value=FALSE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=ValveOpenOut}}
+                     └──right: 
+                        {BoolConstant value=FALSE}
+            {SclVerificationAssertion tagged=true tag=assert4}
+             └──expression: 
+                {ComparisonExpression operator=<=}
+                 ├──left: 
+                 │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+                 └──right: 
+                    {IntConstant value=800}
+            {SclVerificationAssertion tagged=true tag=assert5}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {ComparisonExpression operator=<=}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+                 │   └──right: 
+                 │      {IntConstant value=0}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=ValveOpenOut}}
+                     └──right: 
+                        {BoolConstant value=TRUE}
+            {SclVerificationAssertion tagged=true tag=assert6}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=ShieldSafeStopReq}}
+                 │   └──right: 
+                 │      {BoolConstant value=FALSE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+                     └──right: 
+                        {BoolConstant value=TRUE}
+            {SclVerificationAssertion tagged=true tag=assert7}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator=<>}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=ShieldDecisionCode}}
+                 │   └──right: 
+                 │      {IntConstant value=4}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+                     └──right: 
+                        {BoolConstant value=TRUE}
+            {SclVerificationAssertion tagged=true tag=assert8}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=ShieldValid}}
+                 │   └──right: 
+                 │      {BoolConstant value=TRUE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+                     └──right: 
+                        {BoolConstant value=FALSE}
+            {SclVerificationAssertion tagged=true tag=assert10}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=EmergencyStop}}
+                 │   └──right: 
+                 │      {BoolConstant value=FALSE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+                     └──right: 
+                        {BoolConstant value=FALSE}
+            {SclVerificationAssertion tagged=true tag=assert11}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+                 │   └──right: 
+                 │      {BoolConstant value=FALSE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=PumpSpeedOut_x10}}
+                     └──right: 
+                        {IntConstant value=0}
+            {SclVerificationAssertion tagged=true tag=assert12}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+                 │   └──right: 
+                 │      {BoolConstant value=FALSE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=ValveOpenOut}}
+                     └──right: 
+                        {BoolConstant value=FALSE}
+            {SclVerificationAssertion tagged=true tag=assert13}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+                 │   └──right: 
+                 │      {BoolConstant value=FALSE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=FailSafeActive}}
+                     └──right: 
+                        {BoolConstant value=FALSE}
+            {SclVerificationAssertion tagged=true tag=assert14}
+             └──expression: 
+                {OrExpression}
+                 ├──left: 
+                 │  {EqualityExpression operator==}
+                 │   ├──left: 
+                 │   │  {DirectNamedRef ref:{NamedElement name=UseShieldControl}}
+                 │   └──right: 
+                 │      {BoolConstant value=FALSE}
+                 └──right: 
+                    {EqualityExpression operator==}
+                     ├──left: 
+                     │  {DirectNamedRef ref:{NamedElement name=UseFallbackControl}}
+                     └──right: 
+                        {BoolConstant value=FALSE}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=LastSeqId}}
+             └──rightValue: 
+                {DirectNamedRef ref:{NamedElement name=ShieldSeqId}}
+            {SclAssignmentStatement}
+             ├──leftValue: 
+             │  {DirectNamedRef ref:{NamedElement name=LastHeartbeat}}
+             └──rightValue: 
+                {DirectNamedRef ref:{NamedElement name=ShieldHeartbeat}}
