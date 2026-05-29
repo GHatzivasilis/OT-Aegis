@@ -5,6 +5,9 @@ OT-Aegis is a research prototype demonstrating a layered safety and cybersecurit
 
 The prototype implements a **defense-in-depth runtime assurance architecture** in which AI-generated control commands are never trusted directly. Instead, they are filtered through a software supervisory shield and then independently validated by deterministic PLC logic before affecting the physical process.
 
+# Citation
+
+If you use this prototype in academic work, please cite the associated publication: "OT-Aegis: AI-Driven Security for Operational Technology and Industrial Systems", G. Hatzivasilis and D. Pezaros.
 ---
 
 ## Architecture
@@ -586,11 +589,6 @@ This enables:
 # License
 
 This project is licensed under the Apache License 2.0.
-
-
-# Citation
-
-If you use this prototype in academic work, please cite the associated publication: "OT-Aegis: AI-Driven Security for Operational Technology and Industrial Systems", G. Hatzivasilis and D. Pezaros.
 
 ---
 
