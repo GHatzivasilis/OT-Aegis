@@ -191,6 +191,20 @@ BEGIN
         Alarm := TRUE;
     END_IF;
 
+    //#ASSERT (EmergencyStop = FALSE OR FailSafeActive = TRUE) : assert1
+	//#ASSERT (EmergencyStop = FALSE OR PumpSpeedOut_x10 = 0) : assert2
+	//#ASSERT (EmergencyStop = FALSE OR ValveOpenOut = FALSE) : assert3
+	//#ASSERT (PumpSpeedOut_x10 <= 800) : assert4
+	//#ASSERT (PumpSpeedOut_x10 <= 0 OR ValveOpenOut = TRUE) : assert5
+	//#ASSERT (ShieldSafeStopReq = FALSE OR FailSafeActive = TRUE) : assert6
+	//#ASSERT (ShieldDecisionCode <> 4 OR FailSafeActive = TRUE) : assert7
+	//#ASSERT (ShieldValid = TRUE OR UseShieldControl = FALSE) : assert8
+	//#ASSERT (EmergencyStop = FALSE OR UseShieldControl = FALSE) : assert10
+	//#ASSERT (FailSafeActive = FALSE OR PumpSpeedOut_x10 = 0) : assert11
+	//#ASSERT (FailSafeActive = FALSE OR ValveOpenOut = FALSE) : assert12
+	//#ASSERT (UseShieldControl = FALSE OR FailSafeActive = FALSE) : assert13
+	//#ASSERT (UseShieldControl = FALSE OR UseFallbackControl = FALSE) : assert14
+
     // Store state for next scan.
     LastSeqId := ShieldSeqId;
     LastHeartbeat := ShieldHeartbeat;
